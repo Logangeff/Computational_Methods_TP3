@@ -53,19 +53,19 @@ def run_base_case(n_paths=50000, rng_seed=123):
     # Efficient portfolios
     vmu, vsi, weights, index_means, cov_matrix = build_portfolios()
 
-    # 1. Wealth grid
+    # Wealth grid
     w_grid, lw_grid = grille(w0, T, nw, ns, vmu, vsi, G)
 
-    # 2. Transition matrices
+    # Transition matrices
     P = build_transition_matrices(w_grid, vmu, vsi)
 
-    # 3. Dynamic programming
+    # Dynamic programming
     V, policy = solve_dp(w_grid, vmu, vsi, G, T, P=P)
 
-    # 4. In-sample probability
+    # In-sample probability
     p_in = interpolate_value_at_w0(V[0, :], w_grid, w0)
 
-    # 5. Out-of-sample Monte Carlo simulation
+    # Out-of-sample Monte Carlo simulation
     rng = np.random.default_rng(rng_seed)
     W_paths = simulate_paths(
         w0, vmu, vsi, policy, w_grid, T,
@@ -73,7 +73,6 @@ def run_base_case(n_paths=50000, rng_seed=123):
     )
     p_oos = np.mean(W_paths[:, -1] >= G)
 
-    # *************   PRINT RESULTS HERE   *************
     print("------ Base Case Results ------")
     print(f"In-sample success probability  : {p_in:.4f}")
     print(f"Out-of-sample success probability: {p_oos:.4f}")
@@ -83,7 +82,6 @@ def run_base_case(n_paths=50000, rng_seed=123):
 
 
 def main():
-    # Pure script mode: prints occur inside run_base_case()
     run_base_case()
 
 
