@@ -12,7 +12,7 @@ def _nearest_grid_indices(w_grid, w_values):
     log_grid = np.log(w_grid)
     log_vals = np.log(w_values)
 
-    # searchsorted gives insertion index on the sorted log-grid
+    # searchsorted function gives insertion index on the sorted log-grid
     idx = np.searchsorted(log_grid, log_vals, side="left")
 
     idx0 = np.clip(idx - 1, 0, len(log_grid) - 1)
@@ -67,7 +67,7 @@ def simulate_paths(w0, vmu, vsi, policy, w_grid, T, n_paths, rng=None):
     for t in range(T):
         # determine grid indices and corresponding portfolio for all paths
         idx = _nearest_grid_indices(w_grid, W_paths[:, t])
-        k_t = policy[t, idx]      # portfolio indices for each path
+        k_t = policy[t, idx]     
         mu_t = vmu[k_t]
         sigma_t = vsi[k_t]
 

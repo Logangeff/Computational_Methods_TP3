@@ -2,7 +2,7 @@ import numpy as np
 
 def grille(w0, T, nw, ns, vmu, vsi, G):
     """
-    Exact Python translation of the MATLAB grille.m function.
+    Python translation of the MATLAB grille.m function.
 
     Parameters
     ----------

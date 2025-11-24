@@ -37,13 +37,12 @@ def build_transition_matrices(w, vmu, vsi):
 
         for i in range(nw):
             mean = log_w[i] + drift
-            z = (log_w - mean) / sigma  # standardized log-return
+            z = (log_w - mean) / sigma  
             # standard normal pdf φ(z); proportional to transition weight
             weights = np.exp(-0.5 * z**2) / sqrt2pi
 
             s = weights.sum()
             if s == 0.0:
-                # extremely unlikely numerically, but guard anyway
                 P[k, i, :] = 1.0 / nw
             else:
                 P[k, i, :] = weights / s

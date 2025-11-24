@@ -26,8 +26,7 @@ def build_portfolios():
         Covariance matrix of the three index funds.
     """
 
-    # === 1. Means and covariance of the three index funds (Table 1) ===
-    # Order: [U.S. Bonds, International Stocks, U.S. Stocks]
+    # Means and covariance of the three index funds (Table 1)
     m = np.array([
         0.0493,   # U.S. Bonds
         0.0770,   # International Stocks
@@ -45,7 +44,7 @@ def build_portfolios():
     # Ensure symmetry (small rounding differences in the PDF)
     cov[1, 2] = cov[2, 1] = 0.5 * (cov[1, 2] + cov[2, 1])
 
-    # === 2. Weights of the 15 portfolios on the efficient frontier (Fig. 1 bottom) ===
+    # Weights of the 15 portfolios on the efficient frontier (Fig. 1 bottom) 
     # Columns: [U.S. Bonds, International Stocks, U.S. Stocks]
     weights = np.array([
         [0.9098,  0.0225,  0.0677],
@@ -65,13 +64,12 @@ def build_portfolios():
         [0.0731, -0.2470,  1.1738],
     ], dtype=float)
 
-    # === 3. Compute portfolio μ and σ for each of the 15 portfolios ===
+    # Compute portfolio μ and σ for each of the 15 portfolios 
 
-    # Expected continuously-compounded return μ_k = w_k^T m
+    # Expected continuously-compounded return
     vmu = weights @ m
 
     # Variance: w_k^T Σ w_k, then σ_k = sqrt(variance)
-    # Using einsum for compactness: (i,j,j,k,i,k) contraction
     variances = np.einsum("ik,kj,ij->i", weights, cov, weights)
     vsi = np.sqrt(variances)
 
