@@ -33,7 +33,7 @@ def build_portfolios():
         0.0886    # U.S. Stocks
     ], dtype=float)
 
-    # Covariance matrix (annual), taken from Table 1.
+    # Covariance matrix (annual), from table 1
     # Rows/cols in same order as m.
     cov = np.array([
         [ 0.0017 , -0.0017 , -0.0021 ],
@@ -44,7 +44,7 @@ def build_portfolios():
     # Ensure symmetry 
     cov[1, 2] = cov[2, 1] = 0.5 * (cov[1, 2] + cov[2, 1])
 
-    # Weights of the 15 portfolios on the efficient frontier (Fig. 1 bottom) 
+    # Weights of the 15 portfolios on the efficient frontier 
     # Columns: [U.S. Bonds, International Stocks, U.S. Stocks]
     weights = np.array([
         [0.9098,  0.0225,  0.0677],
