@@ -40,7 +40,7 @@ def grille(w0, T, nw, ns, vmu, vsi, G):
     wmin = w0 * np.exp((mumin - 0.5 * simax * simax) * T - ns * simax * np.sqrt(T))
     wmax = w0 * np.exp((mumax - 0.5 * simax * simax) * T + ns * simax * np.sqrt(T))
 
-    # grid of ln(wealth) – column vector like MATLAB
+    # grid of ln(wealth) 
     lw = np.linspace(np.log(wmin), np.log(wmax), nw).reshape(-1, 1)
 
     # adjustment to have ln(G) between two points
