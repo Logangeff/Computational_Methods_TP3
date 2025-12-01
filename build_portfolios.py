@@ -41,7 +41,7 @@ def build_portfolios():
         [-0.0021 ,  0.03086,  0.0392 ]
     ], dtype=float)
 
-    # Ensure symmetry (small rounding differences in the PDF)
+    # Ensure symmetry 
     cov[1, 2] = cov[2, 1] = 0.5 * (cov[1, 2] + cov[2, 1])
 
     # Weights of the 15 portfolios on the efficient frontier (Fig. 1 bottom) 
